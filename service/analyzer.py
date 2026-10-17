@@ -24,6 +24,21 @@ DEFAULT_CALIB = {"threshold": 0.5, "alpha": 1.0, "timecode_mode": "peak",
 YES_NO = ["A. Yes.", "B. No."]
 
 
+def pick_attention():
+    """flash-attn, если он установлен и работает; иначе встроенное внимание PyTorch (sdpa).
+
+    Принудительно: VJ_ATTN=sdpa или VJ_ATTN=flash_attention_2.
+    """
+    forced = os.environ.get("VJ_ATTN")
+    if forced:
+        return forced
+    try:
+        from flash_attn import flash_attn_func  # noqa: F401
+        return "flash_attention_2"
+    except Exception:
+        return "sdpa"
+
+
 def load_rules(path):
     with open(path, encoding="utf-8") as f:
         rules = json.load(f)["rules"]
@@ -164,9 +179,11 @@ class VideoJevAnalyzer:
         self.fps, self.max_frames, self.context = fps, max_frames, context
         # local_files_only + каталог с весами и кодом модели: работает без интернета
         self.processor = AutoProcessor.from_pretrained(model_dir, trust_remote_code=True, local_files_only=True)
+        attn = pick_attention()
+        log.info("attention: %s", attn)
         self.model = AutoModel.from_pretrained(
             model_dir, trust_remote_code=True, local_files_only=True, dtype=torch.bfloat16,
-            device_map={"": device}, attn_implementation="flash_attention_2")
+            device_map={"": device}, attn_implementation=attn)
         self.model.prepare_for_inference()
 
     def raw(self, path, fps_scale=1.0):
