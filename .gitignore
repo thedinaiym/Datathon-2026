@@ -1,0 +1,14 @@
+# Data and weights never go to git (FAQ 6: data only for the hackathon; test videos must not be published)
+data/
+models/
+runs/
+jobs/
+logs/
+*.mov
+*.MOV
+*.mp4
+*.xlsx
+*.zip
+.env
+__pycache__/
+*.pyc

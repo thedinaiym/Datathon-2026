@@ -1,0 +1,122 @@
+{
+  "_readme": [
+    "11 categories from your Dataset.xlsx (sheet 'Классификатор'). id = value of the 'type' column in labels.csv.",
+    "label_ru must match the category text in column E of the labels sheet (text before the brackets is compared).",
+    "choice_en / grounding_en: queries for the model, in English. They describe the VISIBLE action. Drafts: tune them on your videos.",
+    "source: fill ONLY with references you have checked yourself. ForteBank is a second-tier bank, so the primary act is the rules for second-tier banks (НБРК resolution of 29.11.2019 No. 231); premises and access: НБРК resolution of 24.02.2020 No. 14. Rules No. 120 govern cash operations inside the National Bank itself: use them at most as a supporting analogy.",
+    "draft_ref_nb120: your current references to Rules No. 120, kept for reference. The service does not show them.",
+    "FAQ 32: every violation in the dataset has an open norm, so the three categories marked 'no direct norm' still need a source."
+  ],
+  "rules": [
+    {
+      "id": "cash_storage",
+      "label_ru": "Хранение наличных",
+      "name_ru": "Нарушение хранения наличных",
+      "choice_en": "Is cash or a sealed cash bag left on the open desk, or the safe left open or with the key in its lock, instead of being locked away?",
+      "grounding_en": "Cash or a cash bag lies on the open desk, or the safe stays open, while the cashier works or walks away.",
+      "description_ru": "Наличные или сейф-пакет остаются на открытом столе либо сейф остаётся открытым или с ключом в замке",
+      "source": {"document": "", "punkt": ""},
+      "draft_ref_nb120": "п.15, п.29"
+    },
+    {
+      "id": "no_identification",
+      "label_ru": "Обслуживание без идентификации",
+      "name_ru": "Обслуживание без проверки документа клиента",
+      "choice_en": "Does the cashier start serving a client without checking the client's identity document?",
+      "grounding_en": "The cashier starts the transaction with the client without looking at an identity document.",
+      "description_ru": "Кассир начинает операцию с клиентом, на видео не видно проверки документа, удостоверяющего личность",
+      "source": {"document": "", "punkt": ""},
+      "draft_ref_nb120": "п.43 пп.1–2, п.46 пп.4"
+    },
+    {
+      "id": "unregistered_receipt",
+      "label_ru": "Приём без оформления и учёта",
+      "name_ru": "Приём ценностей без видимого оформления",
+      "choice_en": "Does the cashier accept money or a cash bag from a client without filling in any documents or typing anything into the computer?",
+      "grounding_en": "The cashier takes the cash bag from the client and puts it away without any paperwork or computer entry.",
+      "description_ru": "Кассир принимает деньги или сейф-пакет, на видео не видно оформления документов или ввода данных",
+      "source": {"document": "", "punkt": ""},
+      "draft_ref_nb120": "пп.16–21, п.25"
+    },
+    {
+      "id": "mixing_clients",
+      "label_ru": "Смешение средств клиентов / незавершённая операция",
+      "name_ru": "Смешение средств клиентов / незавершённая операция",
+      "choice_en": "Does the cashier start serving the next client before finishing the previous client's transaction, or put money from different clients together?",
+      "grounding_en": "The cashier puts money from different clients together or starts the next client before finishing the previous one.",
+      "description_ru": "Кассир переходит к следующему клиенту, не завершив операцию с предыдущим, или объединяет деньги разных клиентов",
+      "source": {"document": "", "punkt": ""},
+      "draft_ref_nb120": "п.21, п.22"
+    },
+    {
+      "id": "unjustified_return",
+      "label_ru": "Возврат наличных клиенту без основания",
+      "name_ru": "Возврат части наличных клиенту",
+      "choice_en": "Does the cashier hand part of the money the client brought back to the client?",
+      "grounding_en": "The cashier gives part of the client's money back to the client.",
+      "description_ru": "Кассир возвращает клиенту часть принесённых им наличных",
+      "source": {"document": "", "punkt": ""},
+      "draft_ref_nb120": "п.22, п.40, п.79"
+    },
+    {
+      "id": "denomination_mixing",
+      "label_ru": "Смешение номиналов",
+      "name_ru": "Смешение номиналов",
+      "choice_en": "Does the cashier put banknotes of different denominations into the same stack?",
+      "grounding_en": "The cashier stacks banknotes of different denominations together.",
+      "description_ru": "Кассир складывает в одну пачку банкноты разного номинала",
+      "source": {"document": "", "punkt": ""},
+      "draft_ref_nb120": "п.81, п.83, п.86"
+    },
+    {
+      "id": "package_opening",
+      "label_ru": "Нарушение порядка вскрытия упаковки и пересчёта",
+      "name_ru": "Нарушение порядка вскрытия упаковки и пересчёта",
+      "choice_en": "Does the cashier cut open a sealed cash bag, take the money out and set the packaging aside before counting?",
+      "grounding_en": "The cashier cuts open the sealed bag with scissors and lays the banknotes out on the desk.",
+      "description_ru": "Кассир вскрывает упакованный сейф-пакет и убирает упаковку до завершения пересчёта",
+      "source": {"document": "", "punkt": ""},
+      "draft_ref_nb120": "п.13, п.15, п.20, п.52 пп.2–3, п.58 (по аналогии)"
+    },
+    {
+      "id": "documents_unattended",
+      "label_ru": "Сохранность кассовых документов",
+      "name_ru": "Документы без присмотра",
+      "choice_en": "Does the cashier leave important documents unattended on the desk and walk away?",
+      "grounding_en": "Documents are left on the desk while the cashier is away.",
+      "description_ru": "Документы остаются на столе без присмотра, кассир отходит от рабочего места",
+      "source": {"document": "", "punkt": ""},
+      "draft_ref_nb120": "п.3 пп.11, п.18, п.45 (косвенно)"
+    },
+    {
+      "id": "workstation_unattended",
+      "label_ru": "Информационная безопасность АРМ",
+      "name_ru": "Рабочий компьютер оставлен включённым без присмотра",
+      "choice_en": "Does the cashier leave the workplace with the computer still switched on and unattended?",
+      "grounding_en": "The cashier walks away leaving the computer on.",
+      "description_ru": "Кассир покидает рабочее место, компьютер остаётся включённым",
+      "source": {"document": "", "punkt": ""},
+      "draft_ref_nb120": "нет прямой нормы"
+    },
+    {
+      "id": "door_open",
+      "label_ru": "Доступ посторонних в кассу",
+      "name_ru": "Дверь кассы открыта во время работы",
+      "choice_en": "Is the door of the cash room left open while the cashier is working?",
+      "grounding_en": "The cash room door stays open while the cashier works.",
+      "description_ru": "Во время работы дверь кассы остаётся открытой",
+      "source": {"document": "", "punkt": ""},
+      "draft_ref_nb120": "нет прямой нормы"
+    },
+    {
+      "id": "workplace_discipline",
+      "label_ru": "Дисциплина рабочего места",
+      "name_ru": "Посторонние предметы на рабочем месте",
+      "choice_en": "Does the cashier put personal belongings or a drink on the work desk, or leave the lights on when leaving?",
+      "grounding_en": "The cashier puts personal items or a drink on the work desk.",
+      "description_ru": "На рабочем столе кассира появляются личные вещи или напитки",
+      "source": {"document": "", "punkt": ""},
+      "draft_ref_nb120": "нет прямой нормы"
+    }
+  ]
+}
