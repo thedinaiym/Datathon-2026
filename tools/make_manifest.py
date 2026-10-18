@@ -137,7 +137,14 @@ def main():
                         dst = out / "aug" / f"{Path(v).stem}__{a}.mp4"
                         augment(src, dst, AUGS[a])
                         variants.append((f"{Path(v).stem}__{a}", dst))
-                    variants += [(f"{k}__r{i}", p) for i in range(1, args.repeat) for k, p in variants]
+                    base_variants = list(variants)
+                    for i in range(1, args.repeat):
+                        for k, p in base_variants:
+                            repeat_path = out / "repeat" / f"{k}__r{i}{p.suffix}"
+                            repeat_path.parent.mkdir(parents=True, exist_ok=True)
+                            if not repeat_path.exists():
+                                os.link(p, repeat_path)
+                            variants.append((f"{k}__r{i}", repeat_path))
                 for key, path in variants:
                     rel = os.path.relpath(path.resolve(), out.resolve())  # пути относительно JSONL
                     for q in questions(key, rel, dur, videos[v], rules):

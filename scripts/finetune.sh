@@ -7,7 +7,7 @@
 set -eo pipefail
 cd "$(dirname "$0")/.."
 CC=$(pwd); VJ=/workspace/VideoJev
-REPEAT=${REPEAT:-4}; LR_SCALE=${LR_SCALE:-0.1}; HEAD_FRACTION=${HEAD_FRACTION:-0.15}
+REPEAT=${REPEAT:-4}; LR_SCALE=${LR_SCALE:-1}; HEAD_FRACTION=${HEAD_FRACTION:-0.15}
 mkdir -p logs
 stage() { if [ -f "$CC/logs/stage_$1.done" ]; then echo "== $1: уже готово"; return 1; fi; echo; echo "== $1"; }
 done_() { touch "$CC/logs/stage_$1.done"; }

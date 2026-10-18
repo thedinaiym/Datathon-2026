@@ -1,0 +1,84 @@
+diff --git a/configs/rgb192_head_only.json b/configs/rgb192_head_only.json
+index 2ee8901..8f09a51 100644
+--- a/configs/rgb192_head_only.json
++++ b/configs/rgb192_head_only.json
+@@ -34,10 +34,10 @@
+   "attention_mode": "causal",
+   "training_fraction": 0.3,
+   "checkpoint_segment_size": 0,
+-  "checkpoint_segment_threshold": 131072,
++  "checkpoint_segment_threshold": 49152,
+   "sequence_packing": true,
+   "global_batch_size": 64,
+-  "max_sequence_length": 196608,
++  "max_sequence_length": 98304,
+   "packed_train_lengths": "data/rgb192/head_only/episodes.json",
+   "global_batch_unit": "packed_sequence",
+   "pack_to_max_length": true,
+diff --git a/configs/rgb192_joint.json b/configs/rgb192_joint.json
+index ba35bfe..2089083 100644
+--- a/configs/rgb192_joint.json
++++ b/configs/rgb192_joint.json
+@@ -34,10 +34,10 @@
+   "attention_mode": "causal",
+   "training_fraction": 0.7,
+   "checkpoint_segment_size": 0,
+-  "checkpoint_segment_threshold": 131072,
++  "checkpoint_segment_threshold": 49152,
+   "sequence_packing": true,
+   "global_batch_size": 64,
+-  "max_sequence_length": 196608,
++  "max_sequence_length": 98304,
+   "packed_train_lengths": "data/rgb192/joint/episodes.json",
+   "global_batch_unit": "packed_sequence",
+   "pack_to_max_length": true,
+diff --git a/scripts/train.py b/scripts/train.py
+index c8cfb2f..cb570dd 100644
+--- a/scripts/train.py
++++ b/scripts/train.py
+@@ -59,11 +59,11 @@ def validate_recipe(c):
+         experiment_arch='timestamp_option_memory', grounding_candidates='timestamp_options',
+         training_layout='shared_video_multiturn_v1', readout_mode='last_attention',
+         attention_mode='causal', head_dim=512, head_similarity='cosine', head_logit_scale=10.,
+-        freeze_visual=True, freeze_llm=head, checkpointing=not head, epochs=1,
+-        lr=0. if head else 5e-6, head_lr=3e-4 if head else 1e-4,
++        freeze_visual=True, freeze_llm=head, checkpointing=not head, epochs=1 if head else 2,
++        lr=0. if head else 1.25e-6, head_lr=3e-4 if head else 2.5e-5,
+         grounding_loss='bce' if head else 'bce_soft_iou', soft_iou_weight=0. if head else 2.,
+-        global_batch_size=64,
+-        max_sequence_length=196608 if rgb else 147456, train_fps=2., eval_fps=4.,
++        global_batch_size=64 if head else 16,
++        max_sequence_length=98304 if rgb else 147456, train_fps=2., eval_fps=4.,
+         sequence_packing=True, pack_to_max_length=True)
+     if c.get('training_stage') not in ('head_only', 'joint'):
+         raise ValueError('An explicit head_only/joint stage is required')
+diff --git a/timejev/rgb_data.py b/timejev/rgb_data.py
+index 54d4e69..6b702ff 100644
+--- a/timejev/rgb_data.py
++++ b/timejev/rgb_data.py
+@@ -12,10 +12,10 @@ from .engine import sha256
+ from .multiturn_inputs import continuation_text, episode_inputs
+ from .rgb_media import timeline, preprocess
+ 
+-CAPACITY = 192*1024
++CAPACITY = 98304
+ MIN_PIXELS = 320*320
+ MAX_PIXELS = 640*640
+-PROTOCOL = 'qwen35_rgb_dynamic_192k_v1'
++PROTOCOL = 'qwen35_rgb_dynamic_96k_v1'
+ 
+ 
+ @lru_cache(maxsize=2048)
+diff --git a/timejev/staged_training.py b/timejev/staged_training.py
+index 9964ca1..5872588 100644
+--- a/timejev/staged_training.py
++++ b/timejev/staged_training.py
+@@ -36,7 +36,7 @@ def initial_head(model, path, config):
+         raise ValueError('Expected a head-only checkpoint for the joint stage')
+     for key in ('base', 'training_split_report', 'seed', 'formulation', 'experiment_arch',
+                 'grounding_candidates', 'readout_mode', 'attention_mode', 'head_dim',
+-                'head_similarity', 'head_logit_scale', 'global_batch_size'):
++                'head_similarity', 'head_logit_scale'):
+         if source.get(key) != config.get(key):
+             raise ValueError(f'Head handoff differs in {key}')
+     for key in ('input_mode', 'max_sequence_length', 'rgb_metadata'):

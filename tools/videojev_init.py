@@ -75,11 +75,32 @@ def cmd_lm(a):
     q, v = index_safetensors(a.qwen), index_safetensors(a.videojev)
     mapping, missing = match_keys({k: s for k, (_, s) in q.items()}, {k: s for k, (_, s) in v.items()})
     print(f"Тензоров в Qwen3.5-4B: {len(q)}; найдено в VideoJev-4B: {len(mapping)}; не найдено: {len(missing)}")
-    if len(missing) > 0.01 * len(q):
+    expected_missing = {
+        "model.language_model.layers.0.mlp.down_proj.weight",
+        "model.language_model.layers.0.mlp.gate_proj.weight",
+        "model.language_model.layers.0.mlp.up_proj.weight",
+        "model.language_model.layers.31.mlp.down_proj.weight",
+        "model.language_model.layers.31.mlp.gate_proj.weight",
+        "model.language_model.layers.31.mlp.up_proj.weight",
+        "model.language_model.layers.31.post_attention_layernorm.weight",
+        "mtp.fc.weight",
+        "mtp.layers.0.input_layernorm.weight",
+        "mtp.layers.0.post_attention_layernorm.weight",
+        "mtp.layers.0.self_attn.k_norm.weight",
+        "mtp.layers.0.self_attn.k_proj.weight",
+        "mtp.layers.0.self_attn.o_proj.weight",
+        "mtp.layers.0.self_attn.q_norm.weight",
+        "mtp.layers.0.self_attn.q_proj.weight",
+        "mtp.layers.0.self_attn.v_proj.weight",
+        "mtp.norm.weight",
+        "mtp.pre_fc_norm_embedding.weight",
+        "mtp.pre_fc_norm_hidden.weight",
+    }
+    if set(missing) != expected_missing:
         for k in missing[:20]:
             print("  не найдено:", k, q[k][1])
         print("  примеры ключей VideoJev:", list(v)[:10])
-        sys.exit("Слишком много несовпадений. Пришлите этот вывод.")
+        sys.exit("Непредусмотренные несовпадения весов. Пришлите этот вывод.")
 
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
