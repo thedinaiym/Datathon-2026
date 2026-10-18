@@ -3,6 +3,8 @@
   "alpha": 0.0,
   "timecode_mode": "start",
   "grounding_threshold": 0.25,
-  "per_rule": {},
+  "per_rule": {
+    "unregistered_receipt": 1.01
+  },
   "max_violations": 2
 }
