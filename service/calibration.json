@@ -1,7 +1,7 @@
 {
-  "threshold": 0.5,
-  "alpha": 1.0,
-  "timecode_mode": "peak",
+  "threshold": 0.7,
+  "alpha": 0.0,
+  "timecode_mode": "start",
   "grounding_threshold": 0.25,
   "per_rule": {}
 }
