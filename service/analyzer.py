@@ -104,6 +104,9 @@ def decide(raw, rules, duration, calib):
             t = float(interval[0]) if interval else 0.0
         t = min(max(t, 0.0), max(duration - 0.05, 0.0))
         found.append({"rule": rule, "score": score, "timecode_sec": round(t, 2), "interval": interval})
+    k = calib.get("max_violations")
+    if k:  # только k самых уверенных типов; вердикт от этого не меняется
+        found = sorted(found, key=lambda x: -x["score"])[:int(k)]
     return sorted(found, key=lambda x: x["timecode_sec"])
 
 
