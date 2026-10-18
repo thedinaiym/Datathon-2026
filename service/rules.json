@@ -15,7 +15,11 @@
       "choice_en": "Is cash or a sealed cash bag left on the open desk, or the safe left open or with the key in its lock, instead of being locked away?",
       "grounding_en": "Cash or a cash bag lies on the open desk, or the safe stays open, while the cashier works or walks away.",
       "description_ru": "Наличные или сейф-пакет остаются на открытом столе либо сейф остаётся открытым или с ключом в замке",
-      "source": {"document": "", "punkt": ""},
+      "source": {
+        "document": "Правила осуществления кассовых операций и операций по инкассации банкнот, монет и ценностей в банках второго уровня (постановление Правления НБ РК от 29.11.2019 № 231)",
+        "punkt": "п. 20 (ранее принятые деньги хранятся в устройствах, закрывающихся на ключ), п. 22, п. 80",
+        "url": "https://zakon.uchet.kz/rus/docs/V1900019680"
+      },
       "draft_ref_nb120": "п.15, п.29"
     },
     {
@@ -25,7 +29,11 @@
       "choice_en": "Does the cashier start serving a client without checking the client's identity document?",
       "grounding_en": "The cashier starts the transaction with the client without looking at an identity document.",
       "description_ru": "Кассир начинает операцию с клиентом, на видео не видно проверки документа, удостоверяющего личность",
-      "source": {"document": "", "punkt": ""},
+      "source": {
+        "document": "Правила осуществления кассовых операций и операций по инкассации банкнот, монет и ценностей в банках второго уровня (постановление Правления НБ РК от 29.11.2019 № 231)",
+        "punkt": "п. 19 подп. 1) при приёме, п. 31 подп. 1) при выдаче",
+        "url": "https://zakon.uchet.kz/rus/docs/V1900019680"
+      },
       "draft_ref_nb120": "п.43 пп.1–2, п.46 пп.4"
     },
     {
@@ -35,7 +43,11 @@
       "choice_en": "Does the cashier accept money or a cash bag from a client without filling in any documents or typing anything into the computer?",
       "grounding_en": "The cashier takes the cash bag from the client and puts it away without any paperwork or computer entry.",
       "description_ru": "Кассир принимает деньги или сейф-пакет, на видео не видно оформления документов или ввода данных",
-      "source": {"document": "", "punkt": ""},
+      "source": {
+        "document": "Правила осуществления кассовых операций и операций по инкассации банкнот, монет и ценностей в банках второго уровня (постановление Правления НБ РК от 29.11.2019 № 231)",
+        "punkt": "п. 17, п. 19 подп. 4)–6); при приёме сумки от инкассации — п. 24 подп. 2)",
+        "url": "https://zakon.uchet.kz/rus/docs/V1900019680"
+      },
       "draft_ref_nb120": "пп.16–21, п.25"
     },
     {
@@ -45,7 +57,11 @@
       "choice_en": "Does the cashier start serving the next client before finishing the previous client's transaction, or put money from different clients together?",
       "grounding_en": "The cashier puts money from different clients together or starts the next client before finishing the previous one.",
       "description_ru": "Кассир переходит к следующему клиенту, не завершив операцию с предыдущим, или объединяет деньги разных клиентов",
-      "source": {"document": "", "punkt": ""},
+      "source": {
+        "document": "Правила осуществления кассовых операций и операций по инкассации банкнот, монет и ценностей в банках второго уровня (постановление Правления НБ РК от 29.11.2019 № 231)",
+        "punkt": "п. 20 (на рабочем месте — только деньги обслуживаемого клиента), п. 21",
+        "url": "https://zakon.uchet.kz/rus/docs/V1900019680"
+      },
       "draft_ref_nb120": "п.21, п.22"
     },
     {
@@ -54,8 +70,12 @@
       "name_ru": "Возврат части наличных клиенту",
       "choice_en": "Does the cashier hand part of the money the client brought back to the client?",
       "grounding_en": "The cashier gives part of the client's money back to the client.",
-      "description_ru": "Кассир возвращает клиенту часть принесённых им наличных",
-      "source": {"document": "", "punkt": ""},
+      "description_ru": "Кассир возвращает клиенту часть принесённых им наличных. Возврат излишка сверх суммы в документе допустим — сверьте с документами",
+      "source": {
+        "document": "Правила осуществления кассовых операций и операций по инкассации банкнот, монет и ценностей в банках второго уровня (постановление Правления НБ РК от 29.11.2019 № 231)",
+        "punkt": "п. 19 подп. 4), п. 29 (косвенно: возврат излишка сверх суммы документа допустим)",
+        "url": "https://zakon.uchet.kz/rus/docs/V1900019680"
+      },
       "draft_ref_nb120": "п.22, п.40, п.79"
     },
     {
@@ -65,7 +85,11 @@
       "choice_en": "Does the cashier put banknotes of different denominations into the same stack?",
       "grounding_en": "The cashier stacks banknotes of different denominations together.",
       "description_ru": "Кассир складывает в одну пачку банкноты разного номинала",
-      "source": {"document": "", "punkt": ""},
+      "source": {
+        "document": "Правила осуществления кассовых операций и операций по инкассации банкнот, монет и ценностей в банках второго уровня (постановление Правления НБ РК от 29.11.2019 № 231)",
+        "punkt": "п. 43, п. 46, п. 50",
+        "url": "https://zakon.uchet.kz/rus/docs/V1900019680"
+      },
       "draft_ref_nb120": "п.81, п.83, п.86"
     },
     {
@@ -75,7 +99,11 @@
       "choice_en": "Does the cashier cut open a sealed cash bag, take the money out and set the packaging aside before counting?",
       "grounding_en": "The cashier cuts open the sealed bag with scissors and lays the banknotes out on the desk.",
       "description_ru": "Кассир вскрывает упакованный сейф-пакет и убирает упаковку до завершения пересчёта",
-      "source": {"document": "", "punkt": ""},
+      "source": {
+        "document": "Правила осуществления кассовых операций и операций по инкассации банкнот, монет и ценностей в банках второго уровня (постановление Правления НБ РК от 29.11.2019 № 231)",
+        "punkt": "п. 24 подп. 3)–4), п. 42; по аналогии — Правила № 120 (НБ РК, 28.09.2020), п. 52 подп. 3)",
+        "url": "https://zakon.uchet.kz/rus/docs/V1900019680"
+      },
       "draft_ref_nb120": "п.13, п.15, п.20, п.52 пп.2–3, п.58 (по аналогии)"
     },
     {
@@ -85,7 +113,11 @@
       "choice_en": "Does the cashier leave important documents unattended on the desk and walk away?",
       "grounding_en": "Documents are left on the desk while the cashier is away.",
       "description_ru": "Документы остаются на столе без присмотра, кассир отходит от рабочего места",
-      "source": {"document": "", "punkt": ""},
+      "source": {
+        "document": "Правила осуществления кассовых операций и операций по инкассации банкнот, монет и ценностей в банках второго уровня (постановление Правления НБ РК от 29.11.2019 № 231)",
+        "punkt": "п. 2 подп. 17), п. 22 (косвенно: документы относятся к ценностям)",
+        "url": "https://zakon.uchet.kz/rus/docs/V1900019680"
+      },
       "draft_ref_nb120": "п.3 пп.11, п.18, п.45 (косвенно)"
     },
     {
@@ -95,7 +127,11 @@
       "choice_en": "Does the cashier leave the workplace with the computer still switched on and unattended?",
       "grounding_en": "The cashier walks away leaving the computer on.",
       "description_ru": "Кассир покидает рабочее место, компьютер остаётся включённым",
-      "source": {"document": "", "punkt": ""},
+      "source": {
+        "document": "Правила осуществления кассовых операций и операций по инкассации банкнот, монет и ценностей в банках второго уровня (постановление Правления НБ РК от 29.11.2019 № 231)",
+        "punkt": "п. 2 подп. 17), п. 22 (косвенно: носители банковской защищаемой информации относятся к ценностям)",
+        "url": "https://zakon.uchet.kz/rus/docs/V1900019680"
+      },
       "draft_ref_nb120": "нет прямой нормы"
     },
     {
@@ -105,7 +141,11 @@
       "choice_en": "Is the door of the cash room left open while the cashier is working?",
       "grounding_en": "The cash room door stays open while the cashier works.",
       "description_ru": "Во время работы дверь кассы остаётся открытой",
-      "source": {"document": "", "punkt": ""},
+      "source": {
+        "document": "Правила организации охраны и устройства помещений банков второго уровня (постановление Правления НБ РК от 24.02.2020 № 14)",
+        "punkt": "п. 8, п. 16 подп. 1) (косвенно: касса изолирована входом с дверью на замке)",
+        "url": "https://zakon.uchet.kz/rus/docs/V2000020075"
+      },
       "draft_ref_nb120": "нет прямой нормы"
     },
     {
@@ -115,7 +155,11 @@
       "choice_en": "Does the cashier put personal belongings or a drink on the work desk, or leave the lights on when leaving?",
       "grounding_en": "The cashier puts personal items or a drink on the work desk.",
       "description_ru": "На рабочем столе кассира появляются личные вещи или напитки",
-      "source": {"document": "", "punkt": ""},
+      "source": {
+        "document": "Правила осуществления кассовых операций и операций по инкассации банкнот, монет и ценностей в банках второго уровня (постановление Правления НБ РК от 29.11.2019 № 231)",
+        "punkt": "п. 12 (личные вещи работников хранятся вне кассового узла)",
+        "url": "https://zakon.uchet.kz/rus/docs/V1900019680"
+      },
       "draft_ref_nb120": "нет прямой нормы"
     }
   ]
